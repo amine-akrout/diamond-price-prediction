@@ -1,28 +1,26 @@
-##
+# Import Libraries
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 from tensorflow.keras import layers
+import matplotlib.pyplot as plt
 import logging
 logging.getLogger("tensorflow").setLevel(logging.ERROR)
-##
+
+# Import Data
 dataframe = pd.read_csv('./data/diamonds.csv')
-
-##
 dataframe.head()
-
-##
 dataframe.info()
 
-##
+# add volume feature
 dataframe = dataframe.drop(columns=['Unnamed: 0'])
 dataframe = dataframe[(dataframe[['x','y','z']] != 0).all(axis=1)]
 dataframe['volume'] = dataframe['x']*dataframe['y']*dataframe['z']
 
-##
+# split data
 train, val, test = np.split(dataframe.sample(frac=1), [int(0.8*len(dataframe)), int(0.9*len(dataframe))])
 
-##
+# create input function
 def df_to_dataset(dataframe, shuffle=True, batch_size=32):
   df = dataframe.copy()
   labels = df.pop('price')
@@ -34,14 +32,14 @@ def df_to_dataset(dataframe, shuffle=True, batch_size=32):
   ds = ds.prefetch(batch_size)
   return ds
 
-##
+# normalization layer
 def get_normalization_layer(name, dataset):
   normalizer = layers.Normalization(axis=None)
   feature_ds = dataset.map(lambda x, y: x[name])
   normalizer.adapt(feature_ds)
   return normalizer
 
-##
+# category encoding feature
 def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
   if dtype == 'string':
     index = layers.StringLookup(max_tokens=max_tokens)
@@ -53,16 +51,16 @@ def get_category_encoding_layer(name, dataset, dtype, max_tokens=None):
   return lambda feature: encoder(index(feature))
 
 
-## Preprocess selected features to train the model on
+# Preprocess selected features to train the model on
 batch_size = 256
 train_ds = df_to_dataset(train, batch_size=batch_size)
 val_ds = df_to_dataset(val, shuffle=False, batch_size=batch_size)
 test_ds = df_to_dataset(test, shuffle=False, batch_size=batch_size)
 
-##
 all_inputs = []
 encoded_features = []
 
+# feature engineering
 # Numerical features.
 for header in ['carat', 'depth', 'table','x', 'y', 'z', 'volume']:
   numeric_col = tf.keras.Input(shape=(1,), name=header)
@@ -84,7 +82,7 @@ for header in categorical_cols:
   encoded_features.append(encoded_categorical_col)
 
 
-##
+# Define the model
 all_features = tf.keras.layers.concatenate(encoded_features)
 x = tf.keras.layers.Dense(256, activation="relu")(all_features)
 x = tf.keras.layers.Dropout(0.3)(x)
@@ -96,7 +94,7 @@ output = tf.keras.layers.Dense(1)(x)
 
 model = tf.keras.Model(all_inputs, output)
 
-##
+# metrics for the model
 METRICS = [tf.keras.metrics.RootMeanSquaredError(name='rmse'),
            tf.keras.metrics.MeanAbsolutePercentageError(name='mape'),
 ]
@@ -105,19 +103,16 @@ model.compile(optimizer=tf.keras.optimizers.Adam(),
               loss='mean_squared_error',
               metrics=[METRICS])
 
-##
+# plot the model
 tf.keras.utils.plot_model(model, show_shapes=True, rankdir="LR")
 
-##
-history= model.fit(train_ds, epochs=50, validation_data=val_ds)
+# model training
+history= model.fit(train_ds, epochs=150, validation_data=val_ds)
 
-##
+# model evaluation
 loss, rmse, mape = model.evaluate(test_ds)
 print("RMSE", rmse)
 print("MAPE", mape)
-##
-import matplotlib.pyplot as plt
-
 
 def plot_graphs(history, string):
   plt.plot(history.history[string])
@@ -127,14 +122,15 @@ def plot_graphs(history, string):
   plt.legend([string, 'val_'+string])
   plt.show()
 
-##
+# plot model performance
 plot_graphs(history, 'rmse')
 plot_graphs(history, 'mape')
 plot_graphs(history, 'loss')
 
-## save model
+# save model
 model.save('diamond_price_predictor')
 reloaded_model = tf.keras.models.load_model('diamond_price_predictor')
+
 
 # Perform inference
 sample = {
