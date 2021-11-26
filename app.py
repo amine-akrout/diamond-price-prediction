@@ -1,13 +1,7 @@
 from __future__ import print_function
 import sys
-
 from flask import Flask, render_template, request
-import pandas as pd
 import tensorflow as tf
-import numpy as np
-import json
-import requests
-
 
 
 app = Flask(__name__)
@@ -24,25 +18,15 @@ def render_message():
     try:
         # Get data input
         carat = float(request.form['carat'])
-        print(carat, file=sys.stderr)
         cut = request.form['cut']
-        print(cut, file=sys.stderr)
         color = request.form['color']
-        print(color, file=sys.stderr)
         clarity = request.form['clarity']
-        print(clarity, file=sys.stderr)
         depth = float(request.form['depth'])
-        print(depth, file=sys.stderr)
         table = float(request.form['table'])
-        print(table, file=sys.stderr)
         x = float(request.form['x'])
-        print(x, file=sys.stderr)
         y = float(request.form['y'])
-        print(y, file=sys.stderr)
         z = float(request.form['z'])
-        print("y", y, file=sys.stderr)
         volume = x*y*z
-        print(volume, file=sys.stderr)
         sample = {
             'carat': carat,
             'cut': cut,
@@ -55,8 +39,6 @@ def render_message():
             'z': z,
             'volume': volume,
         }
-        print(sample, file=sys.stderr)
-        # message = sample
         input_dict = {name: tf.convert_to_tensor([value]) for name, value in sample.items()}
         predictions = reloaded_model.predict(input_dict)
         predicted = predictions[0]
@@ -73,9 +55,6 @@ def render_message():
 
     # Return the model results to the web page
     return render_template('index.html' ,message=message)
-
-    print(message, file=sys.stderr)
-
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8080)
