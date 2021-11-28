@@ -133,3 +133,6 @@ data/*
 
 # idea
 .idea/*
+
+# model training
+model.py
