@@ -1,1 +1,1 @@
-# diamond-price-prediction
+# Deploying Tensorflow Model as a Web App on Azure to predict diamond price

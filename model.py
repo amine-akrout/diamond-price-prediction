@@ -128,8 +128,8 @@ plot_graphs(history, 'mape')
 plot_graphs(history, 'loss')
 
 # save model
-model.save('diamond_price_predictor')
-reloaded_model = tf.keras.models.load_model('diamond_price_predictor')
+#model.save('diamond_price_predictor')
+#reloaded_model = tf.keras.models.load_model('diamond_price_predictor')
 
 '''
 # Perform inference

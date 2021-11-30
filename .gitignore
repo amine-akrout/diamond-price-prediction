@@ -136,3 +136,8 @@ data/*
 
 # model training
 model.py
+
+# vscode
+.vscode/
+
+training.ipynb
