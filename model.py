@@ -131,7 +131,7 @@ plot_graphs(history, 'loss')
 model.save('diamond_price_predictor')
 reloaded_model = tf.keras.models.load_model('diamond_price_predictor')
 
-
+'''
 # Perform inference
 sample = {
     'carat': 0.23,
@@ -152,3 +152,4 @@ predictions = reloaded_model.predict(input_dict)
 predicted = predictions[0]
 
 print("estimated price :", predicted[0], "+/- 9%")
+'''
