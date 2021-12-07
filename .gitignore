@@ -140,4 +140,5 @@ model.py
 # vscode
 .vscode/
 
-training.ipynb
+# azure ml config
+config.json
