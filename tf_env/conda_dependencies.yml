@@ -1,0 +1,130 @@
+name: az_env
+channels:
+- anaconda
+- conda-forge
+- defaults
+dependencies:
+- backcall=0.2.0
+- backports=1.0
+- backports.functools_lru_cache=1.6.4
+- ca-certificates=2021.10.8
+- certifi=2021.10.8
+- colorama=0.4.4
+- debugpy=1.5.1
+- decorator=5.1.0
+- entrypoints=0.3
+- ipykernel=6.4.1
+- ipython=7.30.1
+- ipython_genutils=0.2.0
+- jedi=0.18.1
+- jupyter_client=7.1.0
+- jupyter_core=4.9.1
+- libsodium=1.0.18
+- matplotlib-inline=0.1.3
+- nest-asyncio=1.5.4
+- openssl=1.1.1l
+- parso=0.8.3
+- pickleshare=0.7.5
+- pip=21.3.1
+- prompt-toolkit=3.0.23
+- pygments=2.10.0
+- python=3.8.5
+- python-dateutil=2.8.2
+- python_abi=3.8
+- pyzmq=22.3.0
+- setuptools=50.3.0
+- six=1.16.0
+- sqlite=3.33.0
+- tornado=6.1
+- traitlets=5.1.1
+- vc=14.1
+- vs2015_runtime=14.16.27012
+- wcwidth=0.2.5
+- wheel=0.35.1
+- wincertstore=0.2
+- zeromq=4.3.4
+- zlib=1.2.11
+- pip:
+  - adal==1.2.7
+  - applicationinsights==0.11.10
+  - azure-common==1.1.27
+  - azure-core==1.21.1
+  - azure-graphrbac==0.61.1
+  - azure-identity==1.7.0
+  - azure-mgmt-authorization==0.61.0
+  - azure-mgmt-containerregistry==8.2.0
+  - azure-mgmt-core==1.3.0
+  - azure-mgmt-keyvault==9.3.0
+  - azure-mgmt-resource==13.0.0
+  - azure-mgmt-storage==11.2.0
+  - azureml-core==1.36.0.post2
+  - azureml-dataprep==2.24.4
+  - azureml-dataprep-native==38.0.0
+  - azureml-dataprep-rslex==2.0.3
+  - azureml-dataset-runtime==1.36.0
+  - azureml-defaults==1.36.0
+  - azureml-inference-server-http==0.4.2
+  - backports-tempfile==1.0
+  - backports-weakref==1.0.post1
+  - cffi==1.15.0
+  - charset-normalizer==2.0.9
+  - click==8.0.3
+  - cloudpickle==1.6.0
+  - configparser==3.7.4
+  - contextlib2==21.6.0
+  - cryptography==3.4.8
+  - cycler==0.11.0
+  - distro==1.6.0
+  - docker==5.0.3
+  - dotnetcore2==2.1.22
+  - flask==1.0.3
+  - fonttools==4.28.3
+  - fusepy==3.0.1
+  - google-auth==2.3.3
+  - grpcio==1.42.0
+  - idna==3.3
+  - inference-schema==1.3.0
+  - isodate==0.6.0
+  - itsdangerous==2.0.1
+  - jeepney==0.7.1
+  - jinja2==3.0.3
+  - jmespath==0.10.0
+  - json-logging-py==0.2
+  - jsonpickle==2.0.0
+  - keras==2.7.0
+  - kiwisolver==1.3.2
+  - libclang==12.0.0
+  - markupsafe==2.0.1
+  - matplotlib==3.5.0
+  - msal==1.16.0
+  - msal-extensions==0.3.0
+  - msrest==0.6.21
+  - msrestazure==0.6.4
+  - ndg-httpsclient==0.5.1
+  - numpy==1.21.4
+  - packaging==21.3
+  - pandas==1.3.4
+  - pathspec==0.9.0
+  - pillow==8.4.0
+  - portalocker==1.7.1
+  - psutil==5.8.0
+  - pyarrow==3.0.0
+  - pycparser==2.21
+  - pyjwt==2.3.0
+  - pyopenssl==20.0.1
+  - pyparsing==3.0.6
+  - pytz==2021.3
+  - pywin32==227
+  - requests==2.26.0
+  - secretstorage==3.3.1
+  - setuptools-scm==6.3.2
+  - tensorboard==2.7.0
+  - tensorboard-data-server==0.6.1
+  - tensorflow==2.7.0
+  - tensorflow-estimator==2.7.0
+  - tensorflow-io-gcs-filesystem==0.22.0
+  - tomli==1.2.2
+  - urllib3==1.26.7
+  - waitress==2.0.0
+  - websocket-client==1.2.3
+prefix: C:\Users\yomke\anaconda3\envs\az_env
