@@ -142,3 +142,6 @@ model.py
 
 # azure ml config
 config.json
+
+# azureml-models
+azureml-models/*

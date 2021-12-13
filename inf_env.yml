@@ -1,0 +1,20 @@
+name: inf_env
+dependencies:
+  # The python interpreter version.
+
+  # Currently Azure ML only supports 3.5.2 and later.
+- python=3.8
+- pip
+
+
+
+- pip:
+    # Required packages for AzureML execution, history, and data preparation.
+  - azureml-defaults
+  - azureml-sdk
+  - tensorflow
+  - pandas
+  
+channels:
+- anaconda
+- conda-forge
