@@ -16,9 +16,8 @@ def init():
 
 
 def run(data):
-    test = json.loads(data)
-    print(f"received data {test}")
-    input_dict = {name: tf.convert_to_tensor([value]) for name, value in test.items()}
+    input_data = json.loads(data)
+    input_dict = {name: tf.convert_to_tensor([value]) for name, value in input_data.items()}
     predictions = model.predict(input_dict)
     predicted = predictions[0]
     result = str(round(predicted[0],2))
