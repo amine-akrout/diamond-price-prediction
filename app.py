@@ -1,20 +1,24 @@
+# Import Libraries
 from __future__ import print_function
 import sys
+import requests
+import json
 from flask import Flask, render_template, request
-
-import os
-os.environ["CUDA_VISIBLE_DEVICES"]="-1" 
 import tensorflow as tf
+import os
 
+# Deactivate GPU for inference
+os.environ["CUDA_VISIBLE_DEVICES"]="-1" 
+
+# Uri of the deployed model
+URI = "http://affdaeb4-9abd-473d-a1c2-e35c67dd4b0f.francecentral.azurecontainer.io/score"
 
 app = Flask(__name__)
-reloaded_model = tf.keras.models.load_model('diamond_price_predictor')
 
 @app.route('/')
 def entry_page():
-    # Jinja template of the webpage
+    # Nicepage template of the webpage
     return render_template('index.html')
-
 
 @app.route('/predict', methods=['GET', 'POST'])
 def render_message():
@@ -42,13 +46,13 @@ def render_message():
             'z': z,
             'volume': volume,
         }
-        input_dict = {name: tf.convert_to_tensor([value]) for name, value in sample.items()}
-        predictions = reloaded_model.predict(input_dict)
-        predicted = predictions[0]
-        print(predicted)
+
+        data = json.dumps(sample)
+        headers = {'Content-Type':'application/json'}
+        response  = requests.post(URI, data, headers=headers)
 
         print('Python module executed successfully')
-        message = 'Estimated price : {:.2f} dollar USD +/- 9%'.format(predicted[0])
+        message = 'Estimated price : {} dollar USD +/- 9%'.format(response.json())
         print(message, file=sys.stderr)
 
     except Exception as e:
