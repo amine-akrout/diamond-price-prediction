@@ -1,4 +1,4 @@
-# Deploying Tensorflow Model as a Web App on Azure to predict diamond price
+#Training and Deploying Tensorflow Model as a Web App on Azure to predict diamond price [![Actions Status](https://github.com/amine-akrout/diamond-price-prediction/blob/main/.github/workflows/VerifyDockerCompose/badge.svg)](https://github.com/amine-akrout/diamond-price-prediction/actions)
 
 ## Project Stucture
 <pre>|   app.py                          # flask app python script  

@@ -147,7 +147,7 @@ config.json
 azureml-models/*
 
 # locally saved models
-diamond_price_predictor/
+./diamond_price_predictor/*
 
 # scoring script
 score.py
