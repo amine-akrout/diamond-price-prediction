@@ -1,4 +1,4 @@
-# Training and Deploying Tensorflow Model as a Web App on Azure to predict diamond price 
+# Training and Deploying Tensorflow Model as a Web App on Azure to predict diamond price  ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/amine-akrout/diamond-price-prediction/Build%20and%20deploy%20Python%20app%20to%20Azure%20Web%20App%20-%20diamond-price?label=Build%20and%20Deployment&style=plastic)
 
 ## Project Stucture
 <pre>|   app.py                          # flask app python script  
