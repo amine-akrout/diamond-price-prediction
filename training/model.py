@@ -133,47 +133,10 @@ print("MAPE", mape)
 run.log('RMSE', np.float(rmse))
 run.log('MAPE', np.float(mape))
 
-'''
-def plot_graphs(history, string):
-  plt.plot(history.history[string])
-  plt.plot(history.history['val_'+string])
-  plt.xlabel("Epochs")
-  plt.ylabel(string)
-  plt.legend([string, 'val_'+string])
-  run.log_image('Plot', plt)
-  #plt.show()
 
-# plot model performance
-plot_graphs(history, 'rmse')
-plot_graphs(history, 'mape')
-plot_graphs(history, 'loss')
-'''
 # save model
 os.makedirs('./outputs/model/', exist_ok=True)
 model.save('outputs/model/')
 
 #reloaded_model = tf.keras.models.load_model('diamond_price_predictor')
 run.complete()
-
-'''
-# Perform inference
-sample = {
-    'carat': 0.23,
-    'cut': 'Ideal',
-    'color': 'E',
-    'clarity': 'SI2',
-    'depth': 61.5,
-    'table': 55.0,
-    'x': 3.95,
-    'y': 3.98,
-    'z': 2.43,
-}
-volume = sample['x']*sample['y']*sample['z']
-sample['volume'] =  volume
-
-input_dict = {name: tf.convert_to_tensor([value]) for name, value in sample.items()}
-predictions = reloaded_model.predict(input_dict)
-predicted = predictions[0]
-
-print("estimated price :", predicted[0], "+/- 9%")
-'''
